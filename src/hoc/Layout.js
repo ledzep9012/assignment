@@ -6,7 +6,7 @@ function Layout({ children }) {
     <div className="container">
       {/* Header */}
       <div className="header">
-        <strong>Famous Quotes</strong>
+        <strong>Random Quotes App</strong>
       </div>
       <div className="body">
         {children}

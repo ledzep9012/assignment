@@ -4,8 +4,6 @@ const getCall = params => (dispatch) => {
   webHelper
     .get(params.url || '')
     .then((res) => {
-      console.log(res.headers);
-      console.log('here', JSON.stringify(res.data));
       dispatch({
         type: params.success,
         payload: res.data,

@@ -5,16 +5,36 @@ import getQuotes from '../actions/quote.actions';
 import Quotes from '../components/Quotes';
 
 export class QuoteContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSelectType = this.handleSelectType.bind(this);
+  }
+
   componentDidMount() {
     const { fetchQuotes } = this.props;
-    fetchQuotes({ cat: 'famous', count: 10 });
+    fetchQuotes({ cat: 'movies', count: 10 });
+  }
+
+  handleSelectType(event) {
+    event.preventDefault();
+    const { fetchQuotes } = this.props;
+    const selectedType = event.target.value;
+    fetchQuotes({ cat: selectedType, count: 10 });
   }
 
   render() {
     const { quotes, isFetching } = this.props;
     return (
       <React.Fragment>
-        {isFetching ? <h1>Fetching Quotes...</h1> : <Quotes quotes={quotes} />}
+        <select className="select" onChange={this.handleSelectType}>
+          <option value="movies">Movies</option>
+          <option value="famous">Famous</option>
+        </select>
+        {isFetching ? (
+          <h1>Fetching Quotes...</h1>
+        ) : (
+          <Quotes quotes={quotes} />
+        )}
       </React.Fragment>
     );
   }
@@ -39,4 +59,7 @@ const mapDispatchToProps = dispatch => ({
   fetchQuotes: props => getQuotes(props)(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuoteContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(QuoteContainer);

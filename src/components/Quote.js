@@ -6,9 +6,19 @@ const Quote = (props) => {
   return (
     <div className="card">
       <div className="container">
-        <h4><b>{quote.quote}</b></h4>
-        <p>{quote.author}</p>
-        <p>{quote.category}</p>
+        <h2>
+          <b>{quote.quote}</b>
+        </h2>
+        <div>
+          <p>
+            <span role="img" aria-label="movies">
+              {quote.category === 'Movies' ? '🎬' : '🧓'}
+            </span>
+            &nbsp;
+            {' '}
+            <span style={ {color: 'darkgrey'} }>{quote.author}</span>
+          </p>
+        </div>
       </div>
     </div>
   );
