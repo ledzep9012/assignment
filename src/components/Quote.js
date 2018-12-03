@@ -16,7 +16,7 @@ const Quote = (props) => {
             </span>
             &nbsp;
             {' '}
-            <span style={ {color: 'darkgrey'} }>{quote.author}</span>
+            <span style={{ color: 'darkgrey' }}>{quote.author}</span>
           </p>
         </div>
       </div>

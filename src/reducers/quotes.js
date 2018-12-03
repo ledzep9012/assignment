@@ -11,7 +11,10 @@ export default function (state = initialState, action) {
   switch (type) {
     case QUOTE_ERROR:
       return {
-        initialState,
+        ...state,
+        ...initialState,
+        isFetching: false,
+        error: payload,
       };
     case FETCH_QUOTES:
       return {

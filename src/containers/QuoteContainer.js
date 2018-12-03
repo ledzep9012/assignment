@@ -23,18 +23,15 @@ export class QuoteContainer extends Component {
   }
 
   render() {
-    const { quotes, isFetching } = this.props;
+    const { quotes, isFetching, error } = this.props;
     return (
       <React.Fragment>
         <select className="select" onChange={this.handleSelectType}>
           <option value="movies">Movies</option>
           <option value="famous">Famous</option>
         </select>
-        {isFetching ? (
-          <h1>Fetching Quotes...</h1>
-        ) : (
-          <Quotes quotes={quotes} />
-        )}
+        {isFetching ? <h1>Fetching Quotes...</h1> : <Quotes quotes={quotes} />}
+        {error && !isFetching && <h2>{error}</h2>}
       </React.Fragment>
     );
   }
@@ -44,14 +41,20 @@ QuoteContainer.propTypes = {
   fetchQuotes: PropTypes.func.isRequired,
   quotes: PropTypes.instanceOf(Object).isRequired,
   isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+};
+
+QuoteContainer.defaultProps = {
+  error: '',
 };
 
 const mapStateToProps = (state) => {
   const { quote } = state;
-  const { quotes, isFetching } = quote;
+  const { quotes, isFetching, error } = quote;
   return {
     quotes,
     isFetching,
+    error,
   };
 };
 

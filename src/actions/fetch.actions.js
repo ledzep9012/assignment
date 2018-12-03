@@ -11,10 +11,10 @@ const getCall = params => (dispatch) => {
     })
     .catch((err) => {
       // eslint-disable-next-line no-console
-      console.error(err);
+      console.info(err);
       dispatch({
         type: params.err,
-        payload: err.msg,
+        payload: err.msg || 'API error',
       });
     });
 };
